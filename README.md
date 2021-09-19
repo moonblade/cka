@@ -11,7 +11,7 @@
 
 ### Logs
 
-> 1. 19 sep
+> Day 1 - 19 sep
 
 - Read "the kubernetes book" by nigel poulton
 - Setup 3 nodes, and added a deployment for nginx, its service with a nodeport, and accessed it with curl
