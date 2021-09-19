@@ -16,5 +16,5 @@
 - Read "the kubernetes book" by nigel poulton
 - Setup 3 nodes, and added a deployment for nginx, its service with a nodeport, and accessed it with curl
 - Realize that lxc doesn't support mac, and find alternatives for k8s hard mode.
-
+- Start 4 digital ocean instances, one as host and the others as cluster nodes with one master
 
