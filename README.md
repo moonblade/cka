@@ -5,8 +5,19 @@
 - go thorugh kubernetes.io docs for better higher level overview understanding
 - ~~lxc containers~~, mac only has lxc client
 - [x] k8s the hard way
-- [] RBAC
+- [ ] RBAC
 
+<details>
+<summary>
+### Notes
+</summary>
+
+#### RBAC
+
+test
+
+
+</details>
 
 ### Logs
 
