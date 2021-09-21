@@ -83,7 +83,7 @@ with
 Create a new user
 
 ```
-openssl genrsa -o mb.key 2048
+openssl genrsa -out mb.key 2048
 openssl req -key mb.key -out mb.csr -new
 ```
 
@@ -102,23 +102,24 @@ spec:
   request: $(cat mb.csr | base64)
   username: test2
 EOF
+k apply -f csr.yaml
 ```
 
 approve it
 ```
 k get csr
-k approve csr usersign
+k certificate approve csr usersign
 ```
 
 get it out
 ```
-k get csr -o json | jq .status.certificate | base64 -d | tr -d \" > mb.csr
+k get csr usersign -o json | jq .status.certificate | tr -d \" | base64 -d  > mb.crt
 ```
 
 make a config out of it
 ```
 k config view --flatten --minify > kconfig
-k config set-credential test2 --embed-certs --client-certificate=mb.crt --client-key=mb.key --username test2 --kubeconfig=kconfig
+k config set-credentials test2 --client-certificate=mb.crt --client-key=mb.key --username test2 --embed-certs --kubeconfig=kconfig 
 k config set-context test2 --cluster=kind-kind --user=test2 --kubeconfig=kconfig
 ```
 
@@ -139,6 +140,11 @@ k get po --kubeconfig=kconfig
 </details>
 
 ### Logs
+
+> Day 3 - 21 Sep
+- Reading about users, setup some rbac basic roles and bindings,
+- create new users, sign them with cluster admin cert and then use that to create a new kubeconfig for a user. 
+Didn't particularly like the process, feels like if there is no external AD, k8s should get into user management as well, even if its a niche thing 
 
 > Day 2 - 20 sep
 
