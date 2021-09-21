@@ -64,6 +64,20 @@ Note: might be that its just role ref that is immutable and subjects can be chan
 - create role binding manually `kubectl create rolebinding ...` 
 - clusteroles can be aggregated, with aggregationRule 
 - `k api-resources -o wide` to find the resource names and associated verbs for roles
+- service accounts need name, can set it to be in namespace as well
+- to use a service account, do `k get secrets <service account secret name> -o json | jq .data.token | cut -f2 -d\" | base64 -d`, then create a user and context in kubeconfig 
+with 
+
+```
+- context: mind
+   cluster: existing-one
+   user: newsvcone
+  name: itsname
+... users section
+- name: newsvcone
+  user:
+    token: copied token
+```
 
 
 
