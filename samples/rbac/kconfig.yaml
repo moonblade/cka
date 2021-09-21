@@ -1,0 +1,11 @@
+apiVersion: v1
+clusters: null
+contexts:
+- context:
+    cluster: kind-kind
+    user: testuser
+  name: kind-kind
+current-context: ""
+kind: Config
+preferences: {}
+users: null

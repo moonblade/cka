@@ -79,6 +79,61 @@ with
     token: copied token
 ```
 
+---
+Create a new user
+
+```
+openssl genrsa -o mb.key 2048
+openssl req -key mb.key -out mb.csr -new
+```
+
+pass through k8s csr 
+
+```
+cat > csr.yaml <<EOF
+apiVersion: certificates.k8s.io/v1
+kind: CertificateSigningRequest
+metadata:
+  name: usersign
+spec:
+  usages:
+    - client auth
+  signerName: kubernetes.io/kube-apiserver-client
+  request: $(cat mb.csr | base64)
+  username: test2
+EOF
+```
+
+approve it
+```
+k get csr
+k approve csr usersign
+```
+
+get it out
+```
+k get csr -o json | jq .status.certificate | base64 -d | tr -d \" > mb.csr
+```
+
+make a config out of it
+```
+k config view --flatten --minify > kconfig
+k config set-credential test2 --embed-certs --client-certificate=mb.crt --client-key=mb.key --username test2 --kubeconfig=kconfig
+k config set-context test2 --cluster=kind-kind --user=test2 --kubeconfig=kconfig
+```
+
+test it
+```
+k get po --kubeconfig=kconfig
+```
+
+test it again after rolebinding
+```
+k create role test2r --resource=pods --verb="*"
+k create rolebinding test2rb --user=test2 --role=test2r
+k get po --kubeconfig=kconfig
+```
+
 
 
 </details>
