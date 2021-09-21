@@ -62,6 +62,8 @@ RBAC
 - bindings are immutable, to update, need to destroy and recreate, so use `kubectl auth reconcile -f my-rbac-rules.yaml --dry-run=client`. 
 Note: might be that its just role ref that is immutable and subjects can be changed
 - create role binding manually `kubectl create rolebinding ...` 
+- clusteroles can be aggregated, with aggregationRule 
+- `k api-resources -o wide` to find the resource names and associated verbs for roles
 
 
 
