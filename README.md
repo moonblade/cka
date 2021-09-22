@@ -186,6 +186,14 @@ sudo apt-mark hold kubelet kubeadm kubectl
 
 Then fucking finally you can do the first commands to set it up
 
+OR, get this, throw docker out of the window, like the expired piece of hot garbage it is and make your bed with containerd, and best of all, it installs with apt
+```
+apt install containerd
+```
+no muss, no fuss. You might have to do a `modprobe br_netfilter`, but thats easy, since its there in the k8s.io install kubeadm section
+From there its the same schenanigans of installing and setting up the control plane
+
+
 
 </details>
 
@@ -197,6 +205,8 @@ Then fucking finally you can do the first commands to set it up
 - Created a new cluster with kubeadm, breezed through it, tried to create a multi master cluster, didn't have much luck due to not having a load balancer and couldn't figure out how to create one myself
 So going to try multi cluster one with digital ocean
 - Get your ass kicked by the humble kubeadm, wrangling an eel might have been easier. Anyway, docker is setup with cgroupfs instead of systemd, and kubelet doesn't start, whether or not its systemd and kubeadmin doesn't notice if it starts anyway
+- Say fuck it, do it again, and emerge with flying colors, realize how good and how bad life can get with a few simple tweaks to a few config files. 
+Spout some inane bullshit like "its the mistakes the guide you towards learning" and then be on your way to the actual goal of multi master setup
 
 > Day 3 - 21 Sep
 - Reading about users, setup some rbac basic roles and bindings,
