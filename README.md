@@ -134,15 +134,73 @@ k create role test2r --resource=pods --verb="*"
 k create rolebinding test2rb --user=test2 --role=test2r
 k get po --kubeconfig=kconfig
 ```
+</details>
 
+<details><summary> kubeadm </summary>
+
+setup
+```
+kubeadm init --apiserver-advertise-address=$(hostname -i) --kubenetes-version <version>
+kubeadm token list
+
+kubeadm join ip --token <token>
+```
+
+Haha, don't make me laugh, if it were that simple everyone would be doing it.
+first you gotta install dockerd
+```
+apt install docker.io
+```
+but dockerd, being a son of a bitch, says, nope, I dont want no truck with systemd, I'll just be here using cgroupfs as by cgroup driver. That can't go on, set it right
+Fucking issue is that this thing seems to be available nowhere apart from stackoverflow, how the heck are you supposed to do this in a test environment.
+```
+cat > /etc/docker/daemon.json << EOF
+{
+  "exec-opts": ["native.cgroupdriver=systemd"]
+}
+EOF
+sudo systemctl restart docker
+```
+
+now that thats done can safely install kubelet and kubeadm and stuff, just make sure that swap is off
+```
+swapoff -a
+cat <<EOF | sudo tee /etc/modules-load.d/k8s.conf
+br_netfilter
+EOF
+
+cat <<EOF | sudo tee /etc/sysctl.d/k8s.conf
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables = 1
+EOF
+sudo sysctl --system
+
+sudo apt-get update
+sudo apt-get install -y apt-transport-https ca-certificates curl
+sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
+echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+sudo apt-get update
+sudo apt-get install -y kubelet kubeadm kubectl
+sudo apt-mark hold kubelet kubeadm kubectl
+```
+
+Then fucking finally you can do the first commands to set it up
 
 
 </details>
 
+
 ### Logs
+
+> Day 4 - 22 Sep
+- Check sample question for rbac, realize its easy to the point that you're overpreparing, and move onto kubeadm
+- Created a new cluster with kubeadm, breezed through it, tried to create a multi master cluster, didn't have much luck due to not having a load balancer and couldn't figure out how to create one myself
+So going to try multi cluster one with digital ocean
+- Get your ass kicked by the humble kubeadm, wrangling an eel might have been easier. Anyway, docker is setup with cgroupfs instead of systemd, and kubelet doesn't start, whether or not its systemd and kubeadmin doesn't notice if it starts anyway
 
 > Day 3 - 21 Sep
 - Reading about users, setup some rbac basic roles and bindings,
+- tried setting up service account and adding role bindings to it, need to try it again and log it. 
 - create new users, sign them with cluster admin cert and then use that to create a new kubeconfig for a user. 
 Didn't particularly like the process, feels like if there is no external AD, k8s should get into user management as well, even if its a niche thing 
 
