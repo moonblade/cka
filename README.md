@@ -193,12 +193,70 @@ apt install containerd
 no muss, no fuss. You might have to do a `modprobe br_netfilter`, but thats easy, since its there in the k8s.io install kubeadm section
 From there its the same schenanigans of installing and setting up the control plane
 
+### Multi master setup
 
+Created digital ocean droplet for controller-1, 2 and node-1
+
+ran
+```
+modprobe br_netfilter
+apt install containerd
+swapoff -a
+cat <<EOF | sudo tee /etc/modules-load.d/k8s.conf
+br_netfilter
+EOF
+
+cat <<EOF | sudo tee /etc/sysctl.d/k8s.conf
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables = 1
+EOF
+sudo sysctl --system
+
+sudo apt-get update
+sudo apt-get install -y apt-transport-https ca-certificates curl
+
+sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
+echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+sudo apt-get update
+sudo apt-get install -y kubelet kubeadm kubectl
+sudo apt-mark hold kubelet kubeadm kubectl
+
+echo 1 > /proc/sys/net/ipv4/ip_forward
+
+kubeadm init --control-plane-endpoint $loadbalancerip:443 --apiserver-advertise-address $selfip --pod-network-cidr=10.200.0.0/16 --ignore-preflight-errors=NumCPU,Mem
+
+kubeadm init phase upload-certs --upload-certs
+
+kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
+```
+
+Opened scheduler conf, and removed port=0 line
+```
+vim /etc/kubernetes/manifests/kube-scheduler.yaml
+systemctl restart kubelet
+```
+
+Add cni
+```
+kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
+```
+
+to join a node, ran the command from above, and used that
+```
+kubeadm token create --print-join-command
+```
+
+Get into a catch22 situation that you can't do upload-certs without load balancer actively working, and load balancer wont work till the cluster is up.
+So end up giving up on it, and instead try the init phase upload-certs later, but it does'nt work either. So finally just give up and move the certs by hand.
 
 </details>
 
 
 ### Logs
+
+> Day 5 - 23 Sep
+- Think you're going to take a break and focus on other projects and not burn up, realize that other project has bugs and go right back in
+- Try to setup multi master cluster with --upload-certs, try your damndest to make it work, finally give up on it, and move certs on your own to create multi master cluster.
 
 > Day 4 - 22 Sep
 - Check sample question for rbac, realize its easy to the point that you're overpreparing, and move onto kubeadm
