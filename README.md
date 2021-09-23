@@ -33,9 +33,9 @@
 - Awareness of manifest management and common templating tools
 
 ##### Cluster Architecture, Installation & Configuration - 25%
-- Manage role based access control (RBAC)
-- Use Kubeadm to install a basic cluster
-- Manage a highly-available Kubernetes cluster
+- [x] Manage role based access control (RBAC)
+- [x] Use Kubeadm to install a basic cluster
+- [x] Manage a highly-available Kubernetes cluster
 - Provision underlying infrastructure to deploy a Kubernetes cluster
 - Perform a version upgrade on a Kubernetes cluster using Kubeadm
 - Implement etcd backup and restore
@@ -251,12 +251,56 @@ So end up giving up on it, and instead try the init phase upload-certs later, bu
 
 </details>
 
+<details>
+<summary>etcd</summary>
+
+install etcd client
+```
+apt install etcd-client
+```
+
+create a cm to test
+```
+kubectl create cm  test --from-literal=key1=config1 --from-literal=key2=config2
+```
+
+take backup
+```
+ETCDCTL_API=3 etcdctl --endpoints localhost:2379 \
+  --cert=/etc/kubernetes/pki/etcd/server.crt \
+  --key=/etc/kubernetes/pki/etcd/server.key \
+  --cacert=/etc/kubernetes/pki/etcd/ca.crt \
+  snapshot save backup
+```
+
+delete cm 
+```
+kubectl delete cm test
+kubectl get cm
+```
+
+to restore, need to kill the pod, then delete the etcd drive, then run restore
+```
+kubectl delete po etcd-kind-control-plane -n kube-system
+rm -rf /var/lib/etcd
+ETCDCTL_API=3 etcdctl --endpoints localhost:2379 \
+  --cert=/etc/kubernetes/pki/etcd/server.crt \
+  --key=/etc/kubernetes/pki/etcd/server.key \
+  --cacert=/etc/kubernetes/pki/etcd/ca.crt \
+  snapshot restore backup
+cp -r default.etcd/* /var/lib/etcd
+kubectl get cm
+```
+
+
+</details>
 
 ### Logs
 
 > Day 5 - 23 Sep
 - Think you're going to take a break and focus on other projects and not burn up, realize that other project has bugs and go right back in
 - Try to setup multi master cluster with --upload-certs, try your damndest to make it work, finally give up on it, and move certs on your own to create multi master cluster.
+- Think you're going to sleep at normal times like 10, and then stay up till 1 am, figuring out random bugs in etcd restore
 
 > Day 4 - 22 Sep
 - Check sample question for rbac, realize its easy to the point that you're overpreparing, and move onto kubeadm
