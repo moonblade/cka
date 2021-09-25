@@ -300,6 +300,7 @@ kubectl get cm
 > Day 6 - 24 Sep
 - Do etcd backup and restore again, wtih delete /var/lib/etcd and restore with --data-dir and restoring somewhere else and editing /etc/kubernetes/manifests/etcd.yaml mount dir
 - Realize that you've already forgotten how to create user, so go back on your own notes and find the k8s.io link where its given and learn that instead. hopefully.
+- Take the rest of the day off realizing you're in a haze already.
 
 > Day 5 - 23 Sep
 - Think you're going to take a break and focus on other projects and not burn up, realize that other project has bugs and go right back in
