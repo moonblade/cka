@@ -200,7 +200,7 @@ Created digital ocean droplet for controller-1, 2 and node-1
 ran
 ```
 modprobe br_netfilter
-apt install containerd
+apt install -y containerd
 swapoff -a
 cat <<EOF | sudo tee /etc/modules-load.d/k8s.conf
 br_netfilter
@@ -297,7 +297,7 @@ kubectl get cm
 
 ### Logs
 
-> Day 7 - 25 Sep
+> Day 7 - 26 Sep, Saturday
 - Realize that its probably stupid to pay and provision systems in all the web based locations, so instead just read up on it, its mostly the same but each would need its own cli app, which is pointless to try to learn. 
 
 > Day 6 - 24 Sep
