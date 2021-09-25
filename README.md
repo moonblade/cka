@@ -297,6 +297,9 @@ kubectl get cm
 
 ### Logs
 
+> Day 7 - 25 Sep
+- Realize that its probably stupid to pay and provision systems in all the web based locations, so instead just read up on it, its mostly the same but each would need its own cli app, which is pointless to try to learn. 
+
 > Day 6 - 24 Sep
 - Do etcd backup and restore again, wtih delete /var/lib/etcd and restore with --data-dir and restoring somewhere else and editing /etc/kubernetes/manifests/etcd.yaml mount dir
 - Realize that you've already forgotten how to create user, so go back on your own notes and find the k8s.io link where its given and learn that instead. hopefully.
@@ -311,7 +314,7 @@ kubectl get cm
 - Check sample question for rbac, realize its easy to the point that you're overpreparing, and move onto kubeadm
 - Created a new cluster with kubeadm, breezed through it, tried to create a multi master cluster, didn't have much luck due to not having a load balancer and couldn't figure out how to create one myself
 So going to try multi cluster one with digital ocean
-- Get your ass kicked by the humble kubeadm, wrangling an eel might have been easier. Anyway, docker is setup with cgroupfs instead of systemd, and kubelet doesn't start, whether or not its systemd and kubeadmin doesn't notice if it starts anyway
+- Get ass kicked by the humble kubeadm, wrangling an eel might have been easier. Anyway, docker is setup with cgroupfs instead of systemd, and kubelet doesn't start, whether or not its systemd and kubeadmin doesn't notice if it starts anyway
 - Say fuck it, do it again, and emerge with flying colors, realize how good and how bad life can get with a few simple tweaks to a few config files. 
 Spout some inane bullshit like "its the mistakes the guide you towards learning" and then be on your way to the actual goal of multi master setup
 
