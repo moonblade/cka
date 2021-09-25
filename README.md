@@ -36,8 +36,8 @@
 - [x] Manage role based access control (RBAC)
 - [x] Use Kubeadm to install a basic cluster
 - [x] Manage a highly-available Kubernetes cluster
-- Provision underlying infrastructure to deploy a Kubernetes cluster
-- Perform a version upgrade on a Kubernetes cluster using Kubeadm
+- [ ] Provision underlying infrastructure to deploy a Kubernetes cluster
+- [x] Perform a version upgrade on a Kubernetes cluster using Kubeadm
 - [x] Implement etcd backup and restore
 
 ##### Services & Networking - 20%
@@ -299,6 +299,7 @@ kubectl get cm
 
 > Day 7 - 26 Sep, Saturday
 - Realize that its probably stupid to pay and provision systems in all the web based locations, so instead just read up on it, its mostly the same but each would need its own cli app, which is pointless to try to learn. 
+- Try to upgrade kubernets version on a cluster, but realize that you're getting stuck with the install portion of it. Finally try it enough times that it works. Then do the upgrade part way too easily. 
 
 > Day 6 - 24 Sep
 - Do etcd backup and restore again, wtih delete /var/lib/etcd and restore with --data-dir and restoring somewhere else and editing /etc/kubernetes/manifests/etcd.yaml mount dir
