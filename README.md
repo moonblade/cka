@@ -30,7 +30,7 @@
 - [x] Know how to scale applications
 - Understand the primitives used to create robust, self-healing, application deployments
 - Understand how resource limits can affect Pod scheduling
-- Awareness of manifest management and common templating tools
+- [x] Awareness of manifest management and common templating tools
 
 ##### Cluster Architecture, Installation & Configuration - 25%
 - [x] Manage role based access control (RBAC)
@@ -326,6 +326,27 @@ k autoscale deploy/web --min=1 --max=10 --cpu-percent=80
 
 </details>
 
+<details><summary>Manifests</summary>
+Manifests are the yaml files that will be used to create the k8s objects, and this will be pushed to version control.
+But when you whave multiple clusters, say dev and prod, and you want different configurations for each, it becomes a hassle to either maintain two versions or change each time.
+
+So templating engines do the hard work.
+
+- kustomize.
+Its inbuilt into kubectl at this point, with -k in kubectl apply. create a kuztumization yaml in how you want it changed and then run k apply.
+It will also hash the changes and change the name of the resource so that the pod will get restarted and wont be using the old stale one.
+
+- helm
+more of a package manager than templater, but has template engine uses with external values file. 
+
+- yq
+similar to jq, commandline modifications to values just before k8s apply is done. 
+
+- Other code based approach
+Create objects from some other code to create the yaml then apply those.
+
+</details>
+
 ### Logs
 
 > Day 8 - 26 Sep, Sunday
@@ -333,6 +354,7 @@ k autoscale deploy/web --min=1 --max=10 --cpu-percent=80
 - Create a k8s cluster on digital ocean for rollout/deployment test.
 - Realize that deployments are baby proof and updating it involves literally changing one line, rollout history and undo is similarly easy as well. 
 Which makes sense, Its solving the problem it aims to solve.
+- Feel like wasting the day, and study an easy portion of manifests instead to feel like something was done.
 
 > Day 7 - 25 Sep, Saturday
 - Realize that its probably stupid to pay and provision systems in all the web based locations, so instead just read up on it, its mostly the same but each would need its own cli app, which is pointless to try to learn. 
