@@ -25,9 +25,9 @@
 - Troubleshoot networking
 
 ##### Workloads & Scheduling - 15%
-- Understand deployments and how to perform rolling update and rollbacks
+- [x] Understand deployments and how to perform rolling update and rollbacks
 - Use ConfigMaps and Secrets to configure applications
-- Know how to scale applications
+- [x] Know how to scale applications
 - Understand the primitives used to create robust, self-healing, application deployments
 - Understand how resource limits can affect Pod scheduling
 - Awareness of manifest management and common templating tools
@@ -295,9 +295,46 @@ kubectl get cm
 
 </details>
 
+<details>
+<summary>Deployment</summary>
+
+Deployment has been made super simple from its predecessors by kubernetes. Used to be that you needed to use replicasets or replicatsetcontroller to do an update. 
+Now all that is done natively with deployment objects, just update the image version and tada it just gets updated as rolling update, not even having any downtime. Baby proof, Like fuck, how cool is that.
+
+to undo a rollout, just go through the rollout history and pick the one you need.
+
+```
+k create deploy web --image=nginx:1.14.1 --replicas=10 --dry-run=client -o=yaml > web.yaml
+k apply -f web.yaml
+k set image deploy/web --record nginx=nginx:1.16.1 --record
+k rollout history deploy/web
+k rollout undo deploy/web 
+# k rollout undo deploy/web --to-revision 3
+# k rollout pause/resume/restart deploy/[name]
+```
+
+Similary scaling is baby proofed as well, for manual scaling, add the --scale param or `.spec.replicas`, change it to scale to more pods.
+```
+kubectl scale deployment.v1.apps/nginx-deployment --replicas=10
+```
+
+For auto scaling, run the autoscale command with min, max and cpu-percent
+Needs metrics server though, its install is also present in deployment page. Takes a while to get started, enough time to make you questions if its working or not, and try installing other shit on it.
+```
+k autoscale deploy/web --min=1 --max=10 --cpu-percent=80
+```
+
+</details>
+
 ### Logs
 
-> Day 7 - 26 Sep, Saturday
+> Day 8 - 26 Sep, Sunday
+- Get frustrated with other hardware projects because hardware is an iffy bitch and figure might as well do some k8s learning.
+- Create a k8s cluster on digital ocean for rollout/deployment test.
+- Realize that deployments are baby proof and updating it involves literally changing one line, rollout history and undo is similarly easy as well. 
+Which makes sense, Its solving the problem it aims to solve.
+
+> Day 7 - 25 Sep, Saturday
 - Realize that its probably stupid to pay and provision systems in all the web based locations, so instead just read up on it, its mostly the same but each would need its own cli app, which is pointless to try to learn. 
 - Try to upgrade kubernets version on a cluster, but realize that you're getting stuck with the install portion of it. Finally try it enough times that it works. Then do the upgrade part way too easily. 
 
