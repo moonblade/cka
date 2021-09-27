@@ -1,0 +1,12 @@
+apiVersion: v1
+data:
+  a.properties: |
+    testkey=testvalue
+    secondkey=secondValue
+  secondFile: | 
+    dummyfilecontent
+    with multiple lines
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: propcm

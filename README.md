@@ -349,7 +349,162 @@ Create objects from some other code to create the yaml then apply those.
 
 </details>
 
+<details> <summary> Configmaps and secrets </summary>
+
+```
+k create cm -h
+
+k create cm literalcm --from-literal foo=bar
+
+k create cm envcm --from-env-file .env --dry-run=client -o yaml > envcm.yaml
+
+k create cm propcm --from-file a.properties --dry-run=client -o yaml  > propcm.yaml
+```
+
+The configmap page in k8s.io has a good sample with almost everything (except configmap everything as .env) (can get it from `k explain --recursive cm | more > podspc.yaml`)
+
+env valueFrom to take each values from .env
+
+envFrom configmapRef to take everything from .env
+
+volumemount to use as full files instead, its always readOnly, removing items will mount everything.
+
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: configmap-demo-pod
+spec:
+  containers:
+    - name: demo
+      image: alpine
+      command: ["sleep", "3600"]
+      env:
+        # Define the environment variable
+        - name: PLAYER_INITIAL_LIVES # Notice that the case is different here
+                                     # from the key name in the ConfigMap.
+          valueFrom:
+            configMapKeyRef:
+              name: game-demo           # The ConfigMap this value comes from.
+              key: player_initial_lives # The key to fetch.
+        - name: UI_PROPERTIES_FILE_NAME
+          valueFrom:
+            configMapKeyRef:
+              name: game-demo
+              key: ui_properties_file_name
+      envFrom:
+        - configMapRef:
+            name: test-cm
+        - secretRef:
+            name: firstsecret
+      volumeMounts:
+      - name: config
+        mountPath: "/config"
+        readOnly: true
+  volumes:
+    # You set volumes at the Pod level, then mount them into containers inside that Pod
+    - name: config
+      configMap:
+        # Provide the name of the ConfigMap you want to mount.
+        name: game-demo
+        # An array of keys from the ConfigMap to create as files
+        items:
+        - key: "game.properties"
+          path: "game.properties"
+        - key: "user-interface.properties"
+          path: "user-interface.properties"
+# to test it
+k exec -it po/configmap-demo-pod -- sh
+```
+
+##### Secrets
+
+Pretty much the same as configmaps, just encrypted. if using data field, its base64 encoded, if its stringData, its normal
+
+Normal secrets are of the type Opaque (generic), but specialized once like tls for certs can be used as well.
+
+
+```
+k create secret generic firstsecret --from-literal=foo=bar
+k create secret generic secondsecret --from-file secretFile
+k create secret generic thirdsecret --from-env-file secretEnv
+```
+
+```
+apiVersion: v1
+kind: Secret
+metadata:
+  name: secret-basic-auth
+type: kubernetes.io/basic-auth
+stringData:
+  username: admin
+  password: t0p-Secret
+```
+
+```
+apiVersion: v1
+kind: Secret
+metadata:
+  name: secret-dockercfg
+type: kubernetes.io/dockercfg
+data:
+  extra: YmFyCg==
+  .dockercfg: |
+        "<base64 encoded ~/.dockercfg file>"
+```
+
+yaml with usage of it
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: configmap-demo-pod
+spec:
+  containers:
+    - name: demo
+      image: alpine
+      command: ["sleep", "3600"]
+      env:
+        # Define the environment variable
+        - name: PLAYER_INITIAL_LIVES # Notice that the case is different here
+                                     # from the key name in the ConfigMap.
+          valueFrom:
+            configMapKeyRef:
+              name: envcm           # The ConfigMap this value comes from.
+              key: testkey # The key to fetch.
+      envFrom:
+        - configMapRef:
+            name: secondenvcm
+        - secretRef:
+            name: firstsecret
+        - secretRef:
+            name: thirdsecret
+      volumeMounts:
+      - name: config
+        mountPath: "/config"
+        readOnly: true
+      - name: secret
+        mountPath: "/secret"
+        readOnly: true
+  volumes:
+    # You set volumes at the Pod level, then mount them into containers inside that Pod
+    - name: config
+      configMap:
+        # Provide the name of the ConfigMap you want to mount.
+        name: propcm
+    - name: secret
+      secret:
+        secretName: secondsecret
+```
+
+its mounted in `tmpfs` in the node and mounted to pod, so wont be in disk.
+
+<details>
+
 ### Logs
+
+> Day 9 - 27 Sep, Monday
+- Start on configmaps, and create and test configmaps, find it relatively easy and realize that it was just tiredness keeping me from doing it yesterday.
 
 > Day 8 - 26 Sep, Sunday
 - Get frustrated with other hardware projects because hardware is an iffy bitch and figure might as well do some k8s learning.
