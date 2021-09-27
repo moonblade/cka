@@ -26,7 +26,7 @@
 
 ##### Workloads & Scheduling - 15%
 - [x] Understand deployments and how to perform rolling update and rollbacks
-- Use ConfigMaps and Secrets to configure applications
+- [x] Use ConfigMaps and Secrets to configure applications
 - [x] Know how to scale applications
 - Understand the primitives used to create robust, self-healing, application deployments
 - Understand how resource limits can affect Pod scheduling
@@ -504,7 +504,7 @@ its mounted in `tmpfs` in the node and mounted to pod, so wont be in disk.
 ### Logs
 
 > Day 9 - 27 Sep, Monday
-- Start on configmaps, and create and test configmaps, find it relatively easy and realize that it was just tiredness keeping me from doing it yesterday.
+- Start on configmaps and secrets, and create and test configmaps and secrets, find it relatively easy and realize that it was just tiredness keeping me from doing it yesterday.
 
 > Day 8 - 26 Sep, Sunday
 - Get frustrated with other hardware projects because hardware is an iffy bitch and figure might as well do some k8s learning.
