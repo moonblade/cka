@@ -499,7 +499,7 @@ spec:
 
 its mounted in `tmpfs` in the node and mounted to pod, so wont be in disk.
 
-<details>
+</details>
 
 ### Logs
 
