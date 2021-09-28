@@ -28,7 +28,7 @@
 - [x] Understand deployments and how to perform rolling update and rollbacks
 - [x] Use ConfigMaps and Secrets to configure applications
 - [x] Know how to scale applications
-- Understand the primitives used to create robust, self-healing, application deployments
+- [x] Understand the primitives used to create robust, self-healing, application deployments
 - Understand how resource limits can affect Pod scheduling
 - [x] Awareness of manifest management and common templating tools
 
@@ -501,7 +501,26 @@ its mounted in `tmpfs` in the node and mounted to pod, so wont be in disk.
 
 </details>
 
+<details><summary> Robustness </summary>
+
+- Deploy has replicasets which maintain the number of replicas. If a pod is killed another takes its place, 
+if a node dies, after five minutes of buffer time, all pods in that node are recreated. If it comes back, the pods in the node are removed. Meanwhile they goto unknown state. 
+
+- pdb, pod disruption budget, to setup max unavailable or min available number of pods, selects with label selectors 
+
+`k create pdb test-pdb --selector run=nginx --min-available=50%`
+
+- [k8s.io - readiness, liveness, startup probes](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/)
+  - liveness probe, know if the pod is active and traffic can be routed there its container property, and available in `k explain deploy --recursive > deployspec`
+  - liveness - pod is alive and doesn't need restart
+  - readiness - pod can receive traffic
+  - startup - same as liveness, but runs on start of pod since first liveness might take a long time 
+
+
 ### Logs
+
+> Day 10 - 28 Sep, Tuesday
+- Pay the price for binging series till 2 and not wake up for learning shit in the morning, have a terrible day, and try to complete understanding primitives for robustness by the end of the day. 
 
 > Day 9 - 27 Sep, Monday
 - Start on configmaps and secrets, and create and test configmaps and secrets, find it relatively easy and realize that it was just tiredness keeping me from doing it yesterday.
