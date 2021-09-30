@@ -29,7 +29,7 @@
 - [x] Use ConfigMaps and Secrets to configure applications
 - [x] Know how to scale applications
 - [x] Understand the primitives used to create robust, self-healing, application deployments
-- Understand how resource limits can affect Pod scheduling
+- [x] Understand how resource limits can affect Pod scheduling
 - [x] Awareness of manifest management and common templating tools
 
 ##### Cluster Architecture, Installation & Configuration - 25%
@@ -516,8 +516,107 @@ if a node dies, after five minutes of buffer time, all pods in that node are rec
   - readiness - pod can receive traffic
   - startup - same as liveness, but runs on start of pod since first liveness might take a long time 
 
+</details>
+
+<details><summary> Resource limits and sheduling </summary>
+
+###### Limits and requests
+
+- limits can be setup with limits - memory and cpu, if it goes above the limits the pod will be evicted  
+- Request is the amount necessary to allocate a pod, wont allocate a pod with lower amount of resources left
+
+```
+kind: Deployment
+apiVersion: extensions/v1beta1
+metadata:
+ name: redis
+ labels:
+   name: redis-deployment
+   app: example-voting-app
+spec:
+ replicas: 1
+ selector:
+   matchLabels:
+    name: redis
+    role: redisdb
+    app: example-voting-app
+ template:
+   spec:
+     containers:
+       - name: redis
+         image: redis:5.0.3-alpine
+         resources:
+           limits:
+             memory: 600Mi
+             cpu: 1
+           requests:
+             memory: 300Mi
+             cpu: 500m
+       - name: busybox
+         image: busybox:1.28
+         resources:
+           limits:
+             memory: 200Mi
+             cpu: 300m
+           requests:
+             memory: 100Mi
+             cpu: 100m
+```
+
+###### Resource quotas
+
+Set at namespace level by admin to limit available resources to a namespace.
+```
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: mem-cpu-example
+spec:
+  hard:
+    requests.cpu: 2
+    requests.memory: 2Gi
+    limits.cpu: 3
+    limits.memory: 4Gi
+```
+
+```
+k create quota -h
+```
+
+###### Limit ranges
+To set default quotas and limits for pods
+
+```
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: cpu-limit-range
+spec:
+  limits:
+  - default:
+      cpu: 1
+    defaultRequest:
+      cpu: 0.5
+    type: Container
+```
+
+</details>
+
+###### Services and networking
+
+<details> <summary> host networking and pod connectivity
+
+- [understanding kubernetes networking model](https://sookocheff.com/post/kubernetes/understanding-kubernetes-networking-model/)
+- cni is used to automate the networking process
+
+- CNI - [weave net](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/high-availability/)
+
+</details>
 
 ### Logs
+
+> Day 11 - 29 Sep, Wednesday
+- Knock another easy topic out of the way, resource limitting on pods.
 
 > Day 10 - 28 Sep, Tuesday
 - Pay the price for binging series till 2 and not wake up for learning shit in the morning, have a terrible day, and try to complete understanding primitives for robustness by the end of the day. 
