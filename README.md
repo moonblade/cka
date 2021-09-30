@@ -41,8 +41,8 @@
 - [x] Implement etcd backup and restore
 
 ##### Services & Networking - 20%
-- Understand host networking configuration on the cluster nodes
-- Understand connectivity between Pods
+- [x] Understand host networking configuration on the cluster nodes
+- [x] Understand connectivity between Pods
 - Understand ClusterIP, NodePort, LoadBalancer service types and endpoints
 - Know how to use Ingress controllers and Ingress resources
 - Know how to configure and use CoreDNS
@@ -617,13 +617,18 @@ spec:
 
 ![pod to pod](https://sookocheff.com/post/kubernetes/understanding-kubernetes-networking-model/pod-to-pod-same-node.gif)
 
+
 - each pod has a veth pair, for same node pod to pod, it goes through a vitual bridge. 
 For different node, bridge doesn't find address, so goes to host, then finds the pod to node entry (cidr iptable) and gets to correct node and then to correct pod.
 
-- [understanding kubernetes networking model](https://sookocheff.com/post/kubernetes/understanding-kubernetes-networking-model/)
-- cni is used to automate the networking process
+![pod to pod different node](https://sookocheff.com/post/kubernetes/understanding-kubernetes-networking-model/pod-to-pod-different-nodes.gif)
 
-- CNI - [weave net](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/high-availability/)
+- [understanding kubernetes networking model](https://sookocheff.com/post/kubernetes/understanding-kubernetes-networking-model/)
+- IPVS (ip virtual server), built on top of netfilter, doesn't need to setup iptables for everything, uses hashmaps so has much better scalability. 
+(existing way is to add each pod in service to iptable and load balancing is done by host)
+
+- cni is used to automate the networking process
+  - CNI - [weave net](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/high-availability/)
 
 </details>
 
