@@ -41,7 +41,7 @@ metadata:
   uid: 313c472d-87bc-498f-8f03-1c9c8c13b8c8
 spec:
   maxReplicas: 8
-  minReplicas: 1
+  minReplicas: 2
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment

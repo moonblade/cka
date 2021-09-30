@@ -43,7 +43,7 @@
 ##### Services & Networking - 20%
 - [x] Understand host networking configuration on the cluster nodes
 - [x] Understand connectivity between Pods
-- Understand ClusterIP, NodePort, LoadBalancer service types and endpoints
+- [x] Understand ClusterIP, NodePort, LoadBalancer service types and endpoints
 - Know how to use Ingress controllers and Ingress resources
 - Know how to configure and use CoreDNS
 - Choose an appropriate container network interface plugin
@@ -632,10 +632,28 @@ For different node, bridge doesn't find address, so goes to host, then finds the
 
 </details>
 
+<details>
+<summary> Service types </summary>
+
+- ClusterIP
+
+  - Gives an internal ip to the service available within the cluster, can forward based on ip or service name, and gets redirected to one of the pods. 
+  - Ensure that selector is correct or it will not route it correctly.
+  - port - svc port, targetPort - pod port
+
+- NodePort
+  - Binds to port on ALL the nodes, good for host requirements, or even outside network through firewall config. 
+
+- loadbalancer
+  - Creates load balancer on the cloud provider and gives ip to outside the cluster
+
+</details>
+
 ### Logs
 
 > Day 12 - 30 Sep, Thursday
 - Read up on host and pod networking, not from implementation point, but mostly as to know how its organized
+- Learn about the service types. Go through iterations of issues of not copying ip correctly, and not passing correct selector finally setting up services correctly.
 
 > Day 11 - 29 Sep, Wednesday
 - Knock another easy topic out of the way, resource limitting on pods.
