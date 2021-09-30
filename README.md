@@ -604,7 +604,7 @@ spec:
 
 ###### Services and networking
 
-<details> <summary> host networking and pod connectivity
+<details> <summary> host networking and pod connectivity </summary>
 
 - [understanding kubernetes networking model](https://sookocheff.com/post/kubernetes/understanding-kubernetes-networking-model/)
 - cni is used to automate the networking process
@@ -614,6 +614,9 @@ spec:
 </details>
 
 ### Logs
+
+> Day 12 - 30 Sep, Thursday
+- Read up on host and pod networking, not from implementation point, but mostly as to know how its organized
 
 > Day 11 - 29 Sep, Wednesday
 - Knock another easy topic out of the way, resource limitting on pods.
