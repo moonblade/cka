@@ -602,9 +602,23 @@ spec:
 
 </details>
 
-###### Services and networking
+##### Services and networking
 
 <details> <summary> host networking and pod connectivity </summary>
+
+###### host networking
+
+- ip per pod,
+- pods can find each other without nat, since each have its own (mostly cidr) ip
+- node agents (kubelet, kube proxy) can talk to all pods in the node
+- service creates virtual ip for a set of pods
+
+###### pod to pod
+
+![pod to pod](https://sookocheff.com/post/kubernetes/understanding-kubernetes-networking-model/pod-to-pod-same-node.gif)
+
+- each pod has a veth pair, for same node pod to pod, it goes through a vitual bridge. 
+For different node, bridge doesn't find address, so goes to host, then finds the pod to node entry (cidr iptable) and gets to correct node and then to correct pod.
 
 - [understanding kubernetes networking model](https://sookocheff.com/post/kubernetes/understanding-kubernetes-networking-model/)
 - cni is used to automate the networking process
