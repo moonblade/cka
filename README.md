@@ -5,7 +5,7 @@
 - go thorugh kubernetes.io docs for better higher level overview understanding
 - ~~lxc containers~~, mac only has lxc client
 - [x] k8s the hard way
-- [ ] RBAC
+- [x] RBAC
 
 ### Curriculum
 
@@ -36,7 +36,7 @@
 - [x] Manage role based access control (RBAC)
 - [x] Use Kubeadm to install a basic cluster
 - [x] Manage a highly-available Kubernetes cluster
-- [ ] Provision underlying infrastructure to deploy a Kubernetes cluster
+- [x] Provision underlying infrastructure to deploy a Kubernetes cluster
 - [x] Perform a version upgrade on a Kubernetes cluster using Kubeadm
 - [x] Implement etcd backup and restore
 
@@ -44,9 +44,9 @@
 - [x] Understand host networking configuration on the cluster nodes
 - [x] Understand connectivity between Pods
 - [x] Understand ClusterIP, NodePort, LoadBalancer service types and endpoints
-- Know how to use Ingress controllers and Ingress resources
-- Know how to configure and use CoreDNS
-- Choose an appropriate container network interface plugin
+- [x] Know how to use Ingress controllers and Ingress resources
+- [x] Know how to configure and use CoreDNS
+- [x] Choose an appropriate container network interface plugin
 
 ### Notes
 
@@ -627,7 +627,7 @@ For different node, bridge doesn't find address, so goes to host, then finds the
 - IPVS (ip virtual server), built on top of netfilter, doesn't need to setup iptables for everything, uses hashmaps so has much better scalability. 
 (existing way is to add each pod in service to iptable and load balancing is done by host)
 
-- cni is used to automate the networking process
+- cni is used to automate the networking process, on how to connect network namespace and network plugin
   - CNI - [weave net](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/high-availability/)
 
 </details>
@@ -649,7 +649,52 @@ For different node, bridge doesn't find address, so goes to host, then finds the
 
 </details>
 
+<details> <summary> CoreDNS </summary>
+ - setup by default from k8s 1.11, 
+
+get config map that controls it
+ ```
+ k get cm -n kube-system coredns  
+ ```
+
+```
+data:
+  Corefile: |
+    .:53 {
+        errors
+        health {
+           lameduck 5s
+        }
+        ready
+        kubernetes cluster.local in-addr.arpa ip6.arpa {
+           pods insecure
+           fallthrough in-addr.arpa ip6.arpa
+           ttl 30
+        }
+        prometheus :9153
+        forward . /etc/resolv.conf
+        cache 30
+        loop
+        reload
+        loadbalance
+    }
+```
+- change cluster.local to change zone,
+- https://coredns.io/2017/05/08/custom-dns-entries-for-kubernetes/
+- to rewrite, can use rewrite plugin `rewrite name foo.example.com foo.default.svc.cluster.local` for `foo` svc in `default` namespace
+- for pod it would be ip.namespace
+
+</details>
+
 ### Logs
+
+> Day 14 - 2 Sep, Saturday
+- Go through coreDNS, realize everythings a fractal and you need to cut off somewhere and stop at configuring basics.
+- Go through CNI, and just learn install of cni, which amounts to appying a yaml file, and call the module done
+
+> Day 13 - 1 Sep, Friday
+- Read up on ingress, assume its easy, realize that ingress controllers are way different from what you thought they were and more similar to cni (third party stuff) and that ingress resources are also different.
+Will come back to this when I'm done with storages so I can try a storagebucket resource ingress.
 
 > Day 12 - 30 Sep, Thursday
 - Read up on host and pod networking, not from implementation point, but mostly as to know how its organized

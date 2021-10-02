@@ -1,0 +1,81 @@
+KIND:     Ingress
+VERSION:  networking.k8s.io/v1
+
+DESCRIPTION:
+     Ingress is a collection of rules that allow inbound connections to reach
+     the endpoints defined by a backend. An Ingress can be configured to give
+     services externally-reachable urls, load balance traffic, terminate SSL,
+     offer name based virtual hosting etc.
+
+FIELDS:
+   apiVersion	<string>
+   kind	<string>
+   metadata	<Object>
+      annotations	<map[string]string>
+      clusterName	<string>
+      creationTimestamp	<string>
+      deletionGracePeriodSeconds	<integer>
+      deletionTimestamp	<string>
+      finalizers	<[]string>
+      generateName	<string>
+      generation	<integer>
+      labels	<map[string]string>
+      managedFields	<[]Object>
+         apiVersion	<string>
+         fieldsType	<string>
+         fieldsV1	<map[string]>
+         manager	<string>
+         operation	<string>
+         time	<string>
+      name	<string>
+      namespace	<string>
+      ownerReferences	<[]Object>
+         apiVersion	<string>
+         blockOwnerDeletion	<boolean>
+         controller	<boolean>
+         kind	<string>
+         name	<string>
+         uid	<string>
+      resourceVersion	<string>
+      selfLink	<string>
+      uid	<string>
+   spec	<Object>
+      defaultBackend	<Object>
+         resource	<Object>
+            apiGroup	<string>
+            kind	<string>
+            name	<string>
+         service	<Object>
+            name	<string>
+            port	<Object>
+               name	<string>
+               number	<integer>
+      ingressClassName	<string>
+      rules	<[]Object>
+         host	<string>
+         http	<Object>
+            paths	<[]Object>
+               backend	<Object>
+                  resource	<Object>
+                     apiGroup	<string>
+                     kind	<string>
+                     name	<string>
+                  service	<Object>
+                     name	<string>
+                     port	<Object>
+                        name	<string>
+                        number	<integer>
+               path	<string>
+               pathType	<string>
+      tls	<[]Object>
+         hosts	<[]string>
+         secretName	<string>
+   status	<Object>
+      loadBalancer	<Object>
+         ingress	<[]Object>
+            hostname	<string>
+            ip	<string>
+            ports	<[]Object>
+               error	<string>
+               port	<integer>
+               protocol	<string>

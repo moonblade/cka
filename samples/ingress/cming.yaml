@@ -1,0 +1,12 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: testing2
+spec:
+  defaultBackend:
+    resource:
+      apiGroup: v1
+      kind: ConfigMap
+      name: testcm
+status:
+  loadBalancer: {}
