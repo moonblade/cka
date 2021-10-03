@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ubuntu
+spec:
+  volumes:
+    - name: testpvc
+      persistentVolumeClaim:
+        claimName: testpvc
+  containers:
+    - name: ubuntu
+      image: ubuntu
+      command:
+        - "sleep"
+        - "604800"
+      ports:
+        - containerPort: 80
+          name: "http"
+      volumeMounts:
+        - mountPath: "/mnt/data"
+          name: testpvc

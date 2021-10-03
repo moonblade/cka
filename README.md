@@ -11,10 +11,10 @@
 
 
 ##### Storage - 10%
-- Understand storage classes, persistent volumes
-- Understand volume mode, access modes and reclaim policies for volumes
-- Understand persistent volume claims primitive
-- Know how to configure applications with persistent storage
+- [x] Understand storage classes, persistent volumes
+- [x] Understand volume mode, access modes and reclaim policies for volumes
+- [x] Understand persistent volume claims primitive
+- [x] Know how to configure applications with persistent storage
 
 ##### Troubleshooting - 30%
 - Evaluate cluster and node logging
@@ -679,6 +679,7 @@ data:
         loadbalance
     }
 ```
+
 - change cluster.local to change zone,
 - https://coredns.io/2017/05/08/custom-dns-entries-for-kubernetes/
 - to rewrite, can use rewrite plugin `rewrite name foo.example.com foo.default.svc.cluster.local` for `foo` svc in `default` namespace
@@ -686,7 +687,55 @@ data:
 
 </details>
 
+##### Storage
+
+<details> <summary> storage </summary>
+
+- https://kubernetes.io/docs/concepts/storage/persistent-volumes/#reserving-a-persistentvolume
+- Storage classes: Storage classes are used by pvc to interact with the underlying storage, so each cloud provider would have their own storage classes 
+- Persistent volume: Virtual volume plugins that are provisioned independant of pod lifecycles and be plugged in as a volume and be used as storage. Created using some underlying storage class.
+- Persistent volume claim: Request by user for a specific pv. (pods use node resources, pvc's use pv resources)
+
+- VolumeMode 
+  - FileSystem - default - mounted into pods as a directory, if backing device is empty, creates file system on it before mounting
+  - Block - raw block device - pod needs to know how to handle it itself.
+
+- PV - access modes - https://stackoverflow.com/questions/37649541/kubernetes-persistent-volume-accessmode
+  - ReadWriteOnce - read write mount by single node
+  - ReadWriteMany - read write by multiple nodes
+  - ReadOnlyMany - read write by many nodes
+
+- Reclaim policy
+  - Retain - manually reclaim
+  - Recycle - does scrub (rm -rf volume/\*)
+  - Delete - associated volume (by the clouod provider) is deleted
+
+
+###### Creating pvc
+- https://kubernetes.io/docs/tasks/configure-pod-container/configure-persistent-volume-storage/#create-a-persistentvolumeclaim
+- Remove storageClassName for default
+
+```
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: task-pv-claim
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 3Gi
+```
+
+</details>
+
 ### Logs
+
+> Day 15 - 3 Sep, Sunday
+- Try to do storage object tasks, realize its not worth the effort, and just read on storage classes, and just decide to create pv and pvc to use on a pod.
+- Go through the rest of them like butter since its really only one thing and not multiple, pvc and its associated stuff. So just finish the whole module.
 
 > Day 14 - 2 Sep, Saturday
 - Go through coreDNS, realize everythings a fractal and you need to cut off somewhere and stop at configuring basics.
