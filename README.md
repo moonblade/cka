@@ -17,9 +17,9 @@
 - [x] Know how to configure applications with persistent storage
 
 ##### Troubleshooting - 30%
-- Evaluate cluster and node logging
-- Understand how to monitor applications
-- Manage container stdout & stderr logs
+- [x] Evaluate cluster and node logging
+- [x] Understand how to monitor applications
+- [x] Manage container stdout & stderr logs
 - Troubleshoot application failure
 - Troubleshoot cluster component failure
 - Troubleshoot networking
@@ -731,7 +731,71 @@ spec:
 
 </details>
 
+##### Troubleshooting
+
+<details> <summary> Logging </summary>
+
+- https://kubernetes.io/docs/concepts/cluster-administration/logging/
+- pod level
+  - `k logs podName` to get logs for pod. 
+
+- node level
+  - A container engine handles and redirects any output generated to a containerized application's stdout and stderr streams. For example, the Docker container engine redirects those two streams to a logging driver, which is configured in Kubernetes to write to a file in JSON format.
+  - Log rotation is not handled by k8s, deployment tool should do that
+  - When using cri, kubelet does the rotation
+  - `k logs` gets data from this log file
+  - `k logs` only gets latest file, so if recently rotated, it will be empty
+  - system stuff (kubelet, cri) will log to journald, if not present, will write to `/var/log`
+
+- cluster level
+  - no native solutions provided, options are
+  - Use a node-level logging agent that runs on every node.
+    - a daemonset on each node that takes the node logs from log folder and puts it to cloud 
+  - Include a dedicated sidecar container for logging in an application pod.
+    - sidecar either streams to stdout (if pods dont log to stdout) - this will make use of logging agent already in the cluster
+    - or sidecar runs logging agent to pick from pod and put in cloud 
+  - write logs directly to cloud from inside pod
+
+- cluster level - centralized
+  - log aggregation given by third party
+  - fluentd - daemon set on each pod - log forwarder/aggregator 
+  - elk - elastic, logstash, kibana  
+    - kibana for ui
+    - logstash to aggregate
+    - elastic for store
+
+- Audit logs
+  - Everything done on a cluster is logged as audit trails
+  - https://kubernetes.io/docs/tasks/debug-application-cluster/audit/
+  
+
+##### Monitoring
+
+- `k top` to get top resource utilizing nodes or pods
+- monitoring is basically making sure that you have enough resources avaialble and if a node/pod goes down there is enough space to put the remainder (and that another node can be upscaled) 
+- prometheus can natively monitor k8s and nodes 
+- [k8s dashbaord](https://github.com/kubernetes/dashboard) also provides monitoring data
+- `kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.3.1/aio/deploy/recommended.yaml`, run `k proxy` to get access to dashboard on locahost:8081
+
+- metrics server is needed for `k top`. `kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml` (this is needed for pod autoscaler as well)
+
+##### container stdout/err
+- container stdout is auto piped to log files by docker to `/var/log/containers` and symlinked in `/var/log/pods`
+- can get logs from pod level with `k logs`
+
+</details>
+
 ### Logs
+
+> Day 18 - 6 Sep, Wednesday
+- Monitoring mostly was about metrics, so gave a cursory glance and moved on.
+- Container and stdout and err, didn't find many resources on it, but generally got the idea that it was done by docker. So left it at that. 
+
+> Day 17 - 5 Sep, Tuesday
+- Take a crack at monitoring, even though its an easy thing, spent most of the time distracted and didn't get shit moving.
+
+> Day 16 - 4 Sep, Monday
+- Start on logging, need to give more attention here as its worth a ton. So should take some time on it. 
 
 > Day 15 - 3 Sep, Sunday
 - Try to do storage object tasks, realize its not worth the effort, and just read on storage classes, and just decide to create pv and pvc to use on a pod.
