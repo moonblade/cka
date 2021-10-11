@@ -787,25 +787,25 @@ spec:
 
 ### Logs
 
-> Day 18 - 6 Sep, Wednesday
+> Day 18 - 6 Oct, Wednesday
 - Monitoring mostly was about metrics, so gave a cursory glance and moved on.
 - Container and stdout and err, didn't find many resources on it, but generally got the idea that it was done by docker. So left it at that. 
 
-> Day 17 - 5 Sep, Tuesday
+> Day 17 - 5 Oct, Tuesday
 - Take a crack at monitoring, even though its an easy thing, spent most of the time distracted and didn't get shit moving.
 
-> Day 16 - 4 Sep, Monday
+> Day 16 - 4 Oct, Monday
 - Start on logging, need to give more attention here as its worth a ton. So should take some time on it. 
 
-> Day 15 - 3 Sep, Sunday
+> Day 15 - 3 Oct, Sunday
 - Try to do storage object tasks, realize its not worth the effort, and just read on storage classes, and just decide to create pv and pvc to use on a pod.
 - Go through the rest of them like butter since its really only one thing and not multiple, pvc and its associated stuff. So just finish the whole module.
 
-> Day 14 - 2 Sep, Saturday
+> Day 14 - 2 Oct, Saturday
 - Go through coreDNS, realize everythings a fractal and you need to cut off somewhere and stop at configuring basics.
 - Go through CNI, and just learn install of cni, which amounts to appying a yaml file, and call the module done
 
-> Day 13 - 1 Sep, Friday
+> Day 13 - 1 Oct, Friday
 - Read up on ingress, assume its easy, realize that ingress controllers are way different from what you thought they were and more similar to cni (third party stuff) and that ingress resources are also different.
 Will come back to this when I'm done with storages so I can try a storagebucket resource ingress.
 
