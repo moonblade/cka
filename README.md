@@ -20,7 +20,7 @@
 - [x] Evaluate cluster and node logging
 - [x] Understand how to monitor applications
 - [x] Manage container stdout & stderr logs
-- Troubleshoot application failure
+- [x] Troubleshoot application failure
 - Troubleshoot cluster component failure
 - Troubleshoot networking
 
@@ -785,7 +785,67 @@ spec:
 
 </details>
 
+<details>
+<summary> Troubleshooting </summary>
+
+### Debugging pods
+
+describe will have list of events and state of pod
+```
+k describe pod podname
+k get events
+```
+
+- stuck in pending state 
+  - Not enough resources in node
+  - hostPort, can only have as many hostports as nodes, most times service is all you need
+- Stuck in waiting
+  - could be failed to pull images
+- pod crashes
+  - get logs to see application logs to see if its issue with app itself
+- pod doing something else
+  - delete and create with --validate, will find unkonwn keys
+  - `k get pod podname > test.yaml` and compare against the yaml you created with
+
+```
+k run 
+k exec
+```
+these can be used to run a container in parallel or exec into it to debug stuff directly
+
+```
+k debug node/nodename -it --name=ubuntu
+```
+will get you acess to basically the entire node
+
+### Debugging replication controllers 
+```
+k describe rc rcname
+```
+
+### Services
+```
+k get endpoints svcname
+```
+check that endpoints are made for the service
+
+- no endpoints
+  - probably selector is wonky, `k get pods --selector=foo=bar,test2=val`
+- check that service exists
+  - `k get svc`
+  - inside a pod try pinging it `wget -O- svcname`, or `nslookup svcname`, `cat /etc/resolve.conf`
+- check that service is connected to correct port
+- is kueb proxy running on node, in node `ps auxw | grep kube-proxy`
+
+
+</details>
+
 ### Logs
+
+> Day 19 - 12 Oct, Tuesday
+- Learn about debugging
+
+> 7 - 11 Oct, off sick
 
 > Day 18 - 6 Oct, Wednesday
 - Monitoring mostly was about metrics, so gave a cursory glance and moved on.
