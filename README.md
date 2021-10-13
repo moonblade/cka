@@ -21,7 +21,7 @@
 - [x] Understand how to monitor applications
 - [x] Manage container stdout & stderr logs
 - [x] Troubleshoot application failure
-- Troubleshoot cluster component failure
+- [x] Troubleshoot cluster component failure
 - Troubleshoot networking
 
 ##### Workloads & Scheduling - 15%
@@ -786,7 +786,7 @@ spec:
 </details>
 
 <details>
-<summary> Troubleshooting </summary>
+<summary> Troubleshooting apps </summary>
 
 ### Debugging pods
 
@@ -840,7 +840,20 @@ check that endpoints are made for the service
 
 </details>
 
+<details>
+<summary> Troubleshooting clusters </summary>
+
+- check if nodes are all correct `k get no`
+- get overall health of cluster, deatiled `kubectl cluster-info dump`
+- check logs of services, for systemd, use `journalctl -xefu servicename` `u` is needed for service, `x` for helpful messages, `f` for follow and `e` to scroll to end
+- for non systemd, check log files in `/var/log/kube*.log`
+
+</details>
+
 ### Logs
+
+> Day 20 - 13 Oct, Wednesday
+- Take it slow so as to not have more burnout, and read a bit on troubleshooting clusters in the evening
 
 > Day 19 - 12 Oct, Tuesday
 - Learn about debugging
