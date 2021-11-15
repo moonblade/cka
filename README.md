@@ -6,6 +6,7 @@
 - ~~lxc containers~~, mac only has lxc client
 - [x] k8s the hard way
 - [x] RBAC
+- Go through all concepts in k8s.io
 
 ### Curriculum
 
@@ -22,7 +23,7 @@
 - [x] Manage container stdout & stderr logs
 - [x] Troubleshoot application failure
 - [x] Troubleshoot cluster component failure
-- Troubleshoot networking
+- [x] Troubleshoot networking
 
 ##### Workloads & Scheduling - 15%
 - [x] Understand deployments and how to perform rolling update and rollbacks
@@ -850,7 +851,27 @@ check that endpoints are made for the service
 
 </details>
 
+<details>
+<summary> Troubleshootnetworking </summary>
+
+- ip forwarding is off 
+  - symtpom: connections time out on trying to connect to different service
+  - fix: `sysctl net.ipv4.ip_forward` should be 1, if not `sysctl -w net.ipv4.ip_forward=1`
+
+- bridge netfilter is disabled
+  - check: `sysctl net.bridge.bridge-nf-call-iptables`  should be 1, if not `modprobe br_netfilter; sysctl -w net.bridge.bridge-nf-call-iptables=1`
+
+- `iptables-save | grep serviceName` to find firewall rules for the service on node
+
+
+</details>
+
 ### Logs
+
+> Day 21 - 15 Nov, Monday
+- Start on networking troubleshooting
+
+> Break for reasons
 
 > Day 20 - 13 Oct, Wednesday
 - Take it slow so as to not have more burnout, and read a bit on troubleshooting clusters in the evening
