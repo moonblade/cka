@@ -868,6 +868,10 @@ check that endpoints are made for the service
 
 ### Logs
 
+> Day 22 - 16 Nov, Tuesday
+- Start recapping stuff, do rbac code examples and add bookmarks to chrome. 
+- Do kubeadm init for single cluster with katakoda
+
 > Day 21 - 15 Nov, Monday
 - Start on networking troubleshooting
 
