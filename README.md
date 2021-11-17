@@ -868,6 +868,10 @@ check that endpoints are made for the service
 
 ### Logs
 
+> Day 23 - 17 Nov, Wednesday
+- Pay for exam, not scheduled yet. Realize that you overpaid but try not to get you down.
+- Go through the rest of installation and configuration and test etcd restore as well.
+
 > Day 22 - 16 Nov, Tuesday
 - Start recapping stuff, do rbac code examples and add bookmarks to chrome. 
 - Do kubeadm init for single cluster with katakoda
