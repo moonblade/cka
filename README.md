@@ -868,6 +868,9 @@ check that endpoints are made for the service
 
 ### Logs
 
+> Day 24 - 18 Nove, Thursday
+- Recap workloads and scheduling
+
 > Day 23 - 17 Nov, Wednesday
 - Pay for exam, not scheduled yet. Realize that you overpaid but try not to get you down.
 - Go through the rest of installation and configuration and test etcd restore as well.
