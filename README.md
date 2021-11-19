@@ -868,7 +868,10 @@ check that endpoints are made for the service
 
 ### Logs
 
-> Day 24 - 18 Nove, Thursday
+> Day 25 - 19 Nov, Friday
+- Recap services and networking, but delaying hands on questions for tomorrow
+
+> Day 24 - 18 Nov, Thursday
 - Recap workloads and scheduling
 
 > Day 23 - 17 Nov, Wednesday
