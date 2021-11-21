@@ -868,6 +868,13 @@ check that endpoints are made for the service
 
 ### Logs
 
+> Day 27 - 21 Nov, Sunday
+- Practice making a pvc and its pod and try mounting and changing content as filesystem
+
+> Day 26 - 20 Nov, Saturday
+- Lie to yourself that you'll get a lot done today
+- create a practise service and ingress components
+
 > Day 25 - 19 Nov, Friday
 - Recap services and networking, but delaying hands on questions for tomorrow
 
