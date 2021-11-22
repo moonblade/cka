@@ -868,6 +868,9 @@ check that endpoints are made for the service
 
 ### Logs
 
+> Day 28 - 22 Nov, Monday
+- Recap troubleshooting
+
 > Day 27 - 21 Nov, Sunday
 - Practice making a pvc and its pod and try mounting and changing content as filesystem
 
