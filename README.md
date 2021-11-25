@@ -868,6 +868,15 @@ check that endpoints are made for the service
 
 ### Logs
 
+> Day 31 - 25 Nov, Thursday
+- Try to retake killer session, but realize that that first session is already closed off now, even though it had said 36 hours on it.
+
+> Day 30 - 24 Nov, Wednesday
+- Redo killer session without time limit and actually complete it
+
+> Day 29 - 23 Nov, Tuesday
+- Attempt killer.sh session and pretty much be humiliated
+
 > Day 28 - 22 Nov, Monday
 - Recap troubleshooting
 
