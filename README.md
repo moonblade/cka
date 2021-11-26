@@ -868,6 +868,10 @@ check that endpoints are made for the service
 
 ### Logs
 
+> Day 32 - 26 Nov, Friday
+- Did questions from an old cka exam, which was significantly easier than the killer.sh session
+- Since there is a free retake, flirting with the idea of just scheduling it for tomorrow and getting it over with.
+
 > Day 31 - 25 Nov, Thursday
 - Try to retake killer session, but realize that that first session is already closed off now, even though it had said 36 hours on it.
 
