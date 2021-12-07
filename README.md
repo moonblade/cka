@@ -3,7 +3,7 @@
 ### Logs
 
 > Day 35 - 4 Dec, Tuesday
-- Wait in anxiosness for the exam time to roll around.
+- Wait in anxiousness for the exam time to roll around.
 - Finally take the test, and [have it be an ordeal](https://moonblade.github.io/blog/2021/12/06/an-exam-ordeal.html)
 
 > Day 34 - 1 Dec, Saturday
