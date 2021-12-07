@@ -868,6 +868,15 @@ check that endpoints are made for the service
 
 ### Logs
 
+> Day 35 - 4 Dec, Tuesday
+- Wait in anxiosness for the exam time to roll around.
+
+> Day 34 - 1 Dec, Saturday
+- Retake killer.sh and get 103/128 and adding a couple extra seconds got 110/128. Significantly happier with performance than last time and be happier about prospect of taking the actual exam. 
+
+> Day 33 - 27 Nov, Saturday
+- Realize that you can't schedule it for tomorrow, get dejected that the entire point of going to a place to study and take exam is ruined now and the earlier available slot is on 7th the next month and will have to take it from home instead. 
+
 > Day 32 - 26 Nov, Friday
 - Did questions from an old cka exam, which was significantly easier than the killer.sh session
 - Since there is a free retake, flirting with the idea of just scheduling it for tomorrow and getting it over with.
@@ -879,7 +888,7 @@ check that endpoints are made for the service
 - Redo killer session without time limit and actually complete it
 
 > Day 29 - 23 Nov, Tuesday
-- Attempt killer.sh session and pretty much be humiliated
+- Attempt killer.sh session and pretty much be humiliated. 40/128
 
 > Day 28 - 22 Nov, Monday
 - Recap troubleshooting
