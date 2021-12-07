@@ -870,6 +870,7 @@ check that endpoints are made for the service
 
 > Day 35 - 4 Dec, Tuesday
 - Wait in anxiosness for the exam time to roll around.
+- Finally take the test, and [have it be an ordeal](https://moonblade.github.io/blog/2021/12/06/an-exam-ordeal.html)
 
 > Day 34 - 1 Dec, Saturday
 - Retake killer.sh and get 103/128 and adding a couple extra seconds got 110/128. Significantly happier with performance than last time and be happier about prospect of taking the actual exam. 
