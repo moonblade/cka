@@ -1,3 +1,150 @@
+# CKA exam 
+
+### Logs
+
+> Day 35 - 4 Dec, Tuesday
+- Wait in anxiosness for the exam time to roll around.
+- Finally take the test, and [have it be an ordeal](https://moonblade.github.io/blog/2021/12/06/an-exam-ordeal.html)
+
+> Day 34 - 1 Dec, Saturday
+- Retake killer.sh and get 103/128 and adding a couple extra seconds got 110/128. Significantly happier with performance than last time and be happier about prospect of taking the actual exam. 
+
+> Day 33 - 27 Nov, Saturday
+- Realize that you can't schedule it for tomorrow, get dejected that the entire point of going to a place to study and take exam is ruined now and the earlier available slot is on 7th the next month and will have to take it from home instead. 
+
+> Day 32 - 26 Nov, Friday
+- Did questions from an old cka exam, which was significantly easier than the killer.sh session
+- Since there is a free retake, flirting with the idea of just scheduling it for tomorrow and getting it over with.
+
+> Day 31 - 25 Nov, Thursday
+- Try to retake killer session, but realize that that first session is already closed off now, even though it had said 36 hours on it.
+
+> Day 30 - 24 Nov, Wednesday
+- Redo killer session without time limit and actually complete it
+
+> Day 29 - 23 Nov, Tuesday
+- Attempt killer.sh session and pretty much be humiliated. 40/128
+
+> Day 28 - 22 Nov, Monday
+- Recap troubleshooting
+
+> Day 27 - 21 Nov, Sunday
+- Practice making a pvc and its pod and try mounting and changing content as filesystem
+
+> Day 26 - 20 Nov, Saturday
+- Lie to yourself that you'll get a lot done today
+- create a practise service and ingress components
+
+> Day 25 - 19 Nov, Friday
+- Recap services and networking, but delaying hands on questions for tomorrow
+
+> Day 24 - 18 Nov, Thursday
+- Recap workloads and scheduling
+
+> Day 23 - 17 Nov, Wednesday
+- Pay for exam, not scheduled yet. Realize that you overpaid but try not to get you down.
+- Go through the rest of installation and configuration and test etcd restore as well.
+
+> Day 22 - 16 Nov, Tuesday
+- Start recapping stuff, do rbac code examples and add bookmarks to chrome. 
+- Do kubeadm init for single cluster with katakoda
+
+> Day 21 - 15 Nov, Monday
+- Start on networking troubleshooting
+
+> Break for reasons
+
+> Day 20 - 13 Oct, Wednesday
+- Take it slow so as to not have more burnout, and read a bit on troubleshooting clusters in the evening
+
+> Day 19 - 12 Oct, Tuesday
+- Learn about debugging
+
+> 7 - 11 Oct, off sick
+
+> Day 18 - 6 Oct, Wednesday
+- Monitoring mostly was about metrics, so gave a cursory glance and moved on.
+- Container and stdout and err, didn't find many resources on it, but generally got the idea that it was done by docker. So left it at that. 
+
+> Day 17 - 5 Oct, Tuesday
+- Take a crack at monitoring, even though its an easy thing, spent most of the time distracted and didn't get shit moving.
+
+> Day 16 - 4 Oct, Monday
+- Start on logging, need to give more attention here as its worth a ton. So should take some time on it. 
+
+> Day 15 - 3 Oct, Sunday
+- Try to do storage object tasks, realize its not worth the effort, and just read on storage classes, and just decide to create pv and pvc to use on a pod.
+- Go through the rest of them like butter since its really only one thing and not multiple, pvc and its associated stuff. So just finish the whole module.
+
+> Day 14 - 2 Oct, Saturday
+- Go through coreDNS, realize everythings a fractal and you need to cut off somewhere and stop at configuring basics.
+- Go through CNI, and just learn install of cni, which amounts to appying a yaml file, and call the module done
+
+> Day 13 - 1 Oct, Friday
+- Read up on ingress, assume its easy, realize that ingress controllers are way different from what you thought they were and more similar to cni (third party stuff) and that ingress resources are also different.
+Will come back to this when I'm done with storages so I can try a storagebucket resource ingress.
+
+> Day 12 - 30 Sep, Thursday
+- Read up on host and pod networking, not from implementation point, but mostly as to know how its organized
+- Learn about the service types. Go through iterations of issues of not copying ip correctly, and not passing correct selector finally setting up services correctly.
+
+> Day 11 - 29 Sep, Wednesday
+- Knock another easy topic out of the way, resource limitting on pods.
+
+> Day 10 - 28 Sep, Tuesday
+- Pay the price for binging series till 2 and not wake up for learning shit in the morning, have a terrible day, and try to complete understanding primitives for robustness by the end of the day. 
+
+> Day 9 - 27 Sep, Monday
+- Start on configmaps and secrets, and create and test configmaps and secrets, find it relatively easy and realize that it was just tiredness keeping me from doing it yesterday.
+
+> Day 8 - 26 Sep, Sunday
+- Get frustrated with other hardware projects because hardware is an iffy bitch and figure might as well do some k8s learning.
+- Create a k8s cluster on digital ocean for rollout/deployment test.
+- Realize that deployments are baby proof and updating it involves literally changing one line, rollout history and undo is similarly easy as well. 
+Which makes sense, Its solving the problem it aims to solve.
+- Feel like wasting the day, and study an easy portion of manifests instead to feel like something was done.
+
+> Day 7 - 25 Sep, Saturday
+- Realize that its probably stupid to pay and provision systems in all the web based locations, so instead just read up on it, its mostly the same but each would need its own cli app, which is pointless to try to learn. 
+- Try to upgrade kubernets version on a cluster, but realize that you're getting stuck with the install portion of it. Finally try it enough times that it works. Then do the upgrade part way too easily. 
+
+> Day 6 - 24 Sep
+- Do etcd backup and restore again, wtih delete /var/lib/etcd and restore with --data-dir and restoring somewhere else and editing /etc/kubernetes/manifests/etcd.yaml mount dir
+- Realize that you've already forgotten how to create user, so go back on your own notes and find the k8s.io link where its given and learn that instead. hopefully.
+- Take the rest of the day off realizing you're in a haze already.
+
+> Day 5 - 23 Sep
+- Think you're going to take a break and focus on other projects and not burn up, realize that other project has bugs and go right back in
+- Try to setup multi master cluster with --upload-certs, try your damndest to make it work, finally give up on it, and move certs on your own to create multi master cluster.
+- Think you're going to sleep at normal times like 10, and then stay up till 1 am, figuring out random bugs in etcd restore
+
+> Day 4 - 22 Sep
+- Check sample question for rbac, realize its easy to the point that you're overpreparing, and move onto kubeadm
+- Created a new cluster with kubeadm, breezed through it, tried to create a multi master cluster, didn't have much luck due to not having a load balancer and couldn't figure out how to create one myself
+So going to try multi cluster one with digital ocean
+- Get ass kicked by the humble kubeadm, wrangling an eel might have been easier. Anyway, docker is setup with cgroupfs instead of systemd, and kubelet doesn't start, whether or not its systemd and kubeadmin doesn't notice if it starts anyway
+- Say fuck it, do it again, and emerge with flying colors, realize how good and how bad life can get with a few simple tweaks to a few config files. 
+Spout some inane bullshit like "its the mistakes the guide you towards learning" and then be on your way to the actual goal of multi master setup
+
+> Day 3 - 21 Sep
+- Reading about users, setup some rbac basic roles and bindings,
+- tried setting up service account and adding role bindings to it, need to try it again and log it. 
+- create new users, sign them with cluster admin cert and then use that to create a new kubeconfig for a user. 
+Didn't particularly like the process, feels like if there is no external AD, k8s should get into user management as well, even if its a niche thing 
+
+> Day 2 - 20 sep
+
+- Completed k8s the hard way, had issue with setting up firewall, didn't know about cidr, so when it gave issue for the internal new ip spaces for pdos, removed that part from config and used vpc internal ips. 
+That came to bite me in the ass later, so removed all the resources and started again. with the correct firewall config. Once completed, ran the smoke tests and brought down the stack.
+- Read [how kubernetes certificates work](https://jvns.ca/blog/2017/08/05/how-kubernetes-certificates-work/)
+
+> Day 1 - 19 sep
+
+- Read "the kubernetes book" by nigel poulton
+- Setup 3 nodes, and added a deployment for nginx, its service with a nodeport, and accessed it with curl
+- Realize that lxc doesn't support mac, and find alternatives for k8s hard mode.
+- Started 4 digital ocean instances, one as host and the others as cluster nodes with one master
+- Got stuck on the k8s the hard way repo since I got confused about setting up loadbalancers. Thought whether or not those were required for the controller only or for everyone. Will get it up tomorrow.
 
 
 ## Todo
@@ -865,151 +1012,4 @@ check that endpoints are made for the service
 
 
 </details>
-
-### Logs
-
-> Day 35 - 4 Dec, Tuesday
-- Wait in anxiosness for the exam time to roll around.
-- Finally take the test, and [have it be an ordeal](https://moonblade.github.io/blog/2021/12/06/an-exam-ordeal.html)
-
-> Day 34 - 1 Dec, Saturday
-- Retake killer.sh and get 103/128 and adding a couple extra seconds got 110/128. Significantly happier with performance than last time and be happier about prospect of taking the actual exam. 
-
-> Day 33 - 27 Nov, Saturday
-- Realize that you can't schedule it for tomorrow, get dejected that the entire point of going to a place to study and take exam is ruined now and the earlier available slot is on 7th the next month and will have to take it from home instead. 
-
-> Day 32 - 26 Nov, Friday
-- Did questions from an old cka exam, which was significantly easier than the killer.sh session
-- Since there is a free retake, flirting with the idea of just scheduling it for tomorrow and getting it over with.
-
-> Day 31 - 25 Nov, Thursday
-- Try to retake killer session, but realize that that first session is already closed off now, even though it had said 36 hours on it.
-
-> Day 30 - 24 Nov, Wednesday
-- Redo killer session without time limit and actually complete it
-
-> Day 29 - 23 Nov, Tuesday
-- Attempt killer.sh session and pretty much be humiliated. 40/128
-
-> Day 28 - 22 Nov, Monday
-- Recap troubleshooting
-
-> Day 27 - 21 Nov, Sunday
-- Practice making a pvc and its pod and try mounting and changing content as filesystem
-
-> Day 26 - 20 Nov, Saturday
-- Lie to yourself that you'll get a lot done today
-- create a practise service and ingress components
-
-> Day 25 - 19 Nov, Friday
-- Recap services and networking, but delaying hands on questions for tomorrow
-
-> Day 24 - 18 Nov, Thursday
-- Recap workloads and scheduling
-
-> Day 23 - 17 Nov, Wednesday
-- Pay for exam, not scheduled yet. Realize that you overpaid but try not to get you down.
-- Go through the rest of installation and configuration and test etcd restore as well.
-
-> Day 22 - 16 Nov, Tuesday
-- Start recapping stuff, do rbac code examples and add bookmarks to chrome. 
-- Do kubeadm init for single cluster with katakoda
-
-> Day 21 - 15 Nov, Monday
-- Start on networking troubleshooting
-
-> Break for reasons
-
-> Day 20 - 13 Oct, Wednesday
-- Take it slow so as to not have more burnout, and read a bit on troubleshooting clusters in the evening
-
-> Day 19 - 12 Oct, Tuesday
-- Learn about debugging
-
-> 7 - 11 Oct, off sick
-
-> Day 18 - 6 Oct, Wednesday
-- Monitoring mostly was about metrics, so gave a cursory glance and moved on.
-- Container and stdout and err, didn't find many resources on it, but generally got the idea that it was done by docker. So left it at that. 
-
-> Day 17 - 5 Oct, Tuesday
-- Take a crack at monitoring, even though its an easy thing, spent most of the time distracted and didn't get shit moving.
-
-> Day 16 - 4 Oct, Monday
-- Start on logging, need to give more attention here as its worth a ton. So should take some time on it. 
-
-> Day 15 - 3 Oct, Sunday
-- Try to do storage object tasks, realize its not worth the effort, and just read on storage classes, and just decide to create pv and pvc to use on a pod.
-- Go through the rest of them like butter since its really only one thing and not multiple, pvc and its associated stuff. So just finish the whole module.
-
-> Day 14 - 2 Oct, Saturday
-- Go through coreDNS, realize everythings a fractal and you need to cut off somewhere and stop at configuring basics.
-- Go through CNI, and just learn install of cni, which amounts to appying a yaml file, and call the module done
-
-> Day 13 - 1 Oct, Friday
-- Read up on ingress, assume its easy, realize that ingress controllers are way different from what you thought they were and more similar to cni (third party stuff) and that ingress resources are also different.
-Will come back to this when I'm done with storages so I can try a storagebucket resource ingress.
-
-> Day 12 - 30 Sep, Thursday
-- Read up on host and pod networking, not from implementation point, but mostly as to know how its organized
-- Learn about the service types. Go through iterations of issues of not copying ip correctly, and not passing correct selector finally setting up services correctly.
-
-> Day 11 - 29 Sep, Wednesday
-- Knock another easy topic out of the way, resource limitting on pods.
-
-> Day 10 - 28 Sep, Tuesday
-- Pay the price for binging series till 2 and not wake up for learning shit in the morning, have a terrible day, and try to complete understanding primitives for robustness by the end of the day. 
-
-> Day 9 - 27 Sep, Monday
-- Start on configmaps and secrets, and create and test configmaps and secrets, find it relatively easy and realize that it was just tiredness keeping me from doing it yesterday.
-
-> Day 8 - 26 Sep, Sunday
-- Get frustrated with other hardware projects because hardware is an iffy bitch and figure might as well do some k8s learning.
-- Create a k8s cluster on digital ocean for rollout/deployment test.
-- Realize that deployments are baby proof and updating it involves literally changing one line, rollout history and undo is similarly easy as well. 
-Which makes sense, Its solving the problem it aims to solve.
-- Feel like wasting the day, and study an easy portion of manifests instead to feel like something was done.
-
-> Day 7 - 25 Sep, Saturday
-- Realize that its probably stupid to pay and provision systems in all the web based locations, so instead just read up on it, its mostly the same but each would need its own cli app, which is pointless to try to learn. 
-- Try to upgrade kubernets version on a cluster, but realize that you're getting stuck with the install portion of it. Finally try it enough times that it works. Then do the upgrade part way too easily. 
-
-> Day 6 - 24 Sep
-- Do etcd backup and restore again, wtih delete /var/lib/etcd and restore with --data-dir and restoring somewhere else and editing /etc/kubernetes/manifests/etcd.yaml mount dir
-- Realize that you've already forgotten how to create user, so go back on your own notes and find the k8s.io link where its given and learn that instead. hopefully.
-- Take the rest of the day off realizing you're in a haze already.
-
-> Day 5 - 23 Sep
-- Think you're going to take a break and focus on other projects and not burn up, realize that other project has bugs and go right back in
-- Try to setup multi master cluster with --upload-certs, try your damndest to make it work, finally give up on it, and move certs on your own to create multi master cluster.
-- Think you're going to sleep at normal times like 10, and then stay up till 1 am, figuring out random bugs in etcd restore
-
-> Day 4 - 22 Sep
-- Check sample question for rbac, realize its easy to the point that you're overpreparing, and move onto kubeadm
-- Created a new cluster with kubeadm, breezed through it, tried to create a multi master cluster, didn't have much luck due to not having a load balancer and couldn't figure out how to create one myself
-So going to try multi cluster one with digital ocean
-- Get ass kicked by the humble kubeadm, wrangling an eel might have been easier. Anyway, docker is setup with cgroupfs instead of systemd, and kubelet doesn't start, whether or not its systemd and kubeadmin doesn't notice if it starts anyway
-- Say fuck it, do it again, and emerge with flying colors, realize how good and how bad life can get with a few simple tweaks to a few config files. 
-Spout some inane bullshit like "its the mistakes the guide you towards learning" and then be on your way to the actual goal of multi master setup
-
-> Day 3 - 21 Sep
-- Reading about users, setup some rbac basic roles and bindings,
-- tried setting up service account and adding role bindings to it, need to try it again and log it. 
-- create new users, sign them with cluster admin cert and then use that to create a new kubeconfig for a user. 
-Didn't particularly like the process, feels like if there is no external AD, k8s should get into user management as well, even if its a niche thing 
-
-> Day 2 - 20 sep
-
-- Completed k8s the hard way, had issue with setting up firewall, didn't know about cidr, so when it gave issue for the internal new ip spaces for pdos, removed that part from config and used vpc internal ips. 
-That came to bite me in the ass later, so removed all the resources and started again. with the correct firewall config. Once completed, ran the smoke tests and brought down the stack.
-- Read [how kubernetes certificates work](https://jvns.ca/blog/2017/08/05/how-kubernetes-certificates-work/)
-
-> Day 1 - 19 sep
-
-- Read "the kubernetes book" by nigel poulton
-- Setup 3 nodes, and added a deployment for nginx, its service with a nodeport, and accessed it with curl
-- Realize that lxc doesn't support mac, and find alternatives for k8s hard mode.
-- Started 4 digital ocean instances, one as host and the others as cluster nodes with one master
-- Got stuck on the k8s the hard way repo since I got confused about setting up loadbalancers. Thought whether or not those were required for the controller only or for everyone. Will get it up tomorrow.
-
 
