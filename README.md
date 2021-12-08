@@ -2,11 +2,16 @@
 
 ### Logs
 
-> Day 35 - 4 Dec, Tuesday
+> Day 36 - 8 Dec, Wednesday
+
+![image](https://user-images.githubusercontent.com/9362269/145177714-c1ffbbcd-b093-4eda-9d84-54ef808b510c.png)
+
+
+> Day 35 - 7 Dec, Tuesday
 - Wait in anxiousness for the exam time to roll around.
 - Finally take the test, and [have it be an ordeal](https://moonblade.github.io/blog/2021/12/06/an-exam-ordeal.html)
 
-> Day 34 - 1 Dec, Saturday
+> Day 34 - 4 Dec, Saturday
 - Retake killer.sh and get 103/128 and adding a couple extra seconds got 110/128. Significantly happier with performance than last time and be happier about prospect of taking the actual exam. 
 
 > Day 33 - 27 Nov, Saturday
